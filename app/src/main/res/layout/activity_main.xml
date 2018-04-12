@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tyroo.tyroocustomeventsample.MainActivity">
+
+    <Button
+        android:id="@+id/btn_refresh_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:text="Refresh Ads" />
+
+    <Button
+        android:id="@+id/btn_customevent_interstitial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Show SampleCustomEvent Interstitial"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@+id/btn_refresh_ads" />
+
+    <Button
+        android:id="@+id/btn_customevent_native"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/btn_customevent_interstitial"
+        android:text="Show SampleCustomEvent Native" />
+
+</android.support.constraint.ConstraintLayout>
