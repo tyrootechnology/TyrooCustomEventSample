@@ -7,8 +7,12 @@ import android.util.Log;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.mediation.MediationAdRequest;
+import com.google.android.gms.ads.mediation.NativeMediationAdRequest;
 import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitial;
 import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitialListener;
+import com.google.android.gms.ads.mediation.customevent.CustomEventNative;
+import com.google.android.gms.ads.mediation.customevent.CustomEventNativeListener;
+import com.tyroo.tva.sdk.AdView;
 import com.tyroo.tva.sdk.TyrooVidAiSdk;
 
 /**
@@ -16,44 +20,12 @@ import com.tyroo.tva.sdk.TyrooVidAiSdk;
  */
 
 @Keep
-public class TyrooCustomEventInterstitial implements CustomEventInterstitial {
-    private static final String TAG = TyrooCustomEventInterstitial.class.getSimpleName();
+public class TyrooCustomEventNativeAd implements CustomEventNative {
+    private static final String TAG = TyrooCustomEventNativeAd.class.getSimpleName();
 
     private TyrooVidAiSdk tyrooVidAiSdk;
+    private AdView adViewNative;
 
-
-    @Override
-    public void requestInterstitialAd(Context context, CustomEventInterstitialListener customEventInterstitialListener, String serverParams, MediationAdRequest mediationAdRequest, Bundle bundle) {
-        Log.d(TAG, "requestInterstitialAd");
-
-        if (context == null) {
-            customEventInterstitialListener.onAdFailedToLoad(AdRequest.ERROR_CODE_INVALID_REQUEST);
-            return;
-        }
-
-
-
-        Log.d(TAG, "String found :" + serverParams);
-       // Log.d(TAG, "String package: "+bundle.getString(TyrooCustomEventExtrasBundleBuilder.KEY_PACKAGE_NAME));
-        if (bundle != null) {
-            tyrooVidAiSdk = TyrooVidAiSdk.initialize(context, serverParams.trim(),
-                    bundle.getString(TyrooCustomEventExtrasBundleBuilder.KEY_PACKAGE_NAME),
-                    new TyrooCustomInterstitialEventForwarder(customEventInterstitialListener));
-            tyrooVidAiSdk.enableCaching(bundle.getBoolean(TyrooCustomEventExtrasBundleBuilder.KEY_ENABLE_VIDEO_CACHING));
-            tyrooVidAiSdk.loadAds();
-        }else {
-            customEventInterstitialListener.onAdFailedToLoad(AdRequest.ERROR_CODE_INTERNAL_ERROR);
-        }
-    }
-
-    @Override
-    public void showInterstitial() {
-
-        if (tyrooVidAiSdk != null) {
-            Log.d(TAG, "showInterstitial ");
-            tyrooVidAiSdk.showAds();
-        }
-    }
 
     @Override
     public void onDestroy() {
@@ -70,12 +42,37 @@ public class TyrooCustomEventInterstitial implements CustomEventInterstitial {
 
     @Override
     public void onPause() {
-        Log.i(TAG, "TyrooCustomEventInterstitial onPause");
+        Log.i(TAG, "TyrooCustomEventNativeAd onPause");
     }
 
     @Override
     public void onResume() {
-        Log.d(TAG, "TyrooCustomEventInterstitial onResume");
+        Log.d(TAG, "TyrooCustomEventNativeAd onResume");
+    }
+
+    @Override
+    public void requestNativeAd(Context context, CustomEventNativeListener customEventNativeListener, String serverParams, NativeMediationAdRequest nativeMediationAdRequest, Bundle bundle) {
+        Log.d(TAG, "request TyrooCustomEventNativeAd");
+
+        if (context == null) {
+            customEventNativeListener.onAdFailedToLoad(AdRequest.ERROR_CODE_INVALID_REQUEST);
+            return;
+        }
+
+
+
+        Log.d(TAG, "String found :" + serverParams);
+        // Log.d(TAG, "String package: "+bundle.getString(TyrooCustomEventExtrasBundleBuilder.KEY_PACKAGE_NAME));
+        if (bundle != null) {
+           adViewNative = new AdView(context);
+            tyrooVidAiSdk = TyrooVidAiSdk.initialize(context, serverParams.trim(),
+                    bundle.getString(TyrooCustomEventExtrasBundleBuilder.KEY_PACKAGE_NAME),
+                    new TyrooCustomNativeEventForwarder(customEventNativeListener, adViewNative));
+            tyrooVidAiSdk.enableCaching(bundle.getBoolean(TyrooCustomEventExtrasBundleBuilder.KEY_ENABLE_VIDEO_CACHING));
+            tyrooVidAiSdk.loadAds();
+        }else {
+            customEventNativeListener.onAdFailedToLoad(AdRequest.ERROR_CODE_INTERNAL_ERROR);
+        }
     }
 
     /**
