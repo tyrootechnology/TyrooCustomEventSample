@@ -10,6 +10,6 @@ You do not need to write custom events for interstitial or native ads beacuse in
 
 [Native Custom Event](https://developers.google.com/admob/android/native-custom-events)
 
-The custom event must be defined in the [AdMob interface](hhttps://apps.admob.com/)
+The custom event must be defined in the [AdMob interface](https://apps.admob.com/)
 
 [How to add a Custom Event in AdMob dashboard](https://support.google.com/admob/answer/3083407)
