@@ -39,7 +39,6 @@ public class TyrooCustomNativeEventForwarder extends NativeContentAdMapper imple
         //sampleAd.setFooterTextSize(Utils.convertDpToPixel(13, MainActivity.this));
         sampleAd.setVideoAutoPlay(true);
         setMediaView(sampleAd);
-        setMediaView(sampleAd);
         nativeListener.onAdLoaded(this);
     }
 
