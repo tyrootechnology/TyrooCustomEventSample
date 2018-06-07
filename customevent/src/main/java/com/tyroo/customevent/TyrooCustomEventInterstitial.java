@@ -36,9 +36,7 @@ public class TyrooCustomEventInterstitial implements CustomEventInterstitial {
         Log.d(TAG, "String found :" + serverParams);
        // Log.d(TAG, "String package: "+bundle.getString(TyrooCustomEventExtrasBundleBuilder.KEY_PACKAGE_NAME));
         if (bundle != null) {
-            tyrooVidAiSdk = TyrooVidAiSdk.initialize(context, serverParams.trim(),
-                    bundle.getString(TyrooCustomEventExtrasBundleBuilder.KEY_PACKAGE_NAME),
-                    new TyrooCustomInterstitialEventForwarder(customEventInterstitialListener));
+            tyrooVidAiSdk = TyrooVidAiSdk.initialize(context, serverParams.trim(), bundle.getString(TyrooCustomEventExtrasBundleBuilder.KEY_PACKAGE_NAME), new TyrooCustomInterstitialEventForwarder(customEventInterstitialListener));
             tyrooVidAiSdk.enableCaching(bundle.getBoolean(TyrooCustomEventExtrasBundleBuilder.KEY_ENABLE_VIDEO_CACHING));
             tyrooVidAiSdk.loadAds();
         }else {

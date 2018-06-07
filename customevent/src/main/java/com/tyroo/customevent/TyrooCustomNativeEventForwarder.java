@@ -8,11 +8,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.mediation.NativeContentAdMapper;
 import com.google.android.gms.ads.mediation.customevent.CustomEventNativeListener;
+import com.tyroo.tva.interfaces.TyrooAdListener;
 import com.tyroo.tva.sdk.AdView;
 import com.tyroo.tva.sdk.ErrorCode;
-import com.tyroo.tva.sdk.TyrooVidAiSdk;
 
-public class TyrooCustomNativeEventForwarder extends NativeContentAdMapper implements TyrooVidAiSdk.TyrooAdListener {
+public class TyrooCustomNativeEventForwarder extends NativeContentAdMapper implements TyrooAdListener {
 
     private static final String TAG = "EventForwarderNative";
     private final CustomEventNativeListener nativeListener;

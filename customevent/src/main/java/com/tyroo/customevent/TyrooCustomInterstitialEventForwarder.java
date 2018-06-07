@@ -22,14 +22,14 @@ import android.util.Log;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitialListener;
 import com.tyroo.tva.sdk.ErrorCode;
-import com.tyroo.tva.sdk.TyrooVidAiSdk;
+import com.tyroo.tva.interfaces.TyrooAdListener;
 
 /**
- * A {@link TyrooVidAiSdk.TyrooAdListener} that forwards events to AdMob Mediation's
+ * A {@link TyrooAdListener} that forwards events to AdMob Mediation's
  * {@link CustomEventInterstitialListener}.
  */
 @Keep
-public class TyrooCustomInterstitialEventForwarder implements TyrooVidAiSdk.TyrooAdListener {
+public class TyrooCustomInterstitialEventForwarder implements TyrooAdListener {
 
     private static final String TAG = "EventForwarder";
     private final CustomEventInterstitialListener interstitialListener;

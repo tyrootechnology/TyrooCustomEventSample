@@ -20,5 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 #vid.ai specific
--keep class com.tyroo.tva.* { *; }
+
+-keep class com.tyroo.tva.** { *; }
+-keep class com.tyroo.tva.custom_widgets.VideoPlayer.* {*;}
+
+
 -keep class com.tyroo.customevent.* { *; }
